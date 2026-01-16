@@ -23,3 +23,13 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('adicionaProdudoNoCarrinho', (...seletores)=>{
+    seletores.forEach((seletor)=>{
+        cy.get(seletor).click()
+    })
+})
+
+Cypress.Commands.add("clicar", (elemento) => {
+  cy.get(elemento).should("exist").click();
+});

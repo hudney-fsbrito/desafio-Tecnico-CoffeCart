@@ -1,0 +1,22 @@
+const CAFE_ESPRESSO = '[data-test="Espresso"]';
+const CAFE_ESPRESSO_MACCHIATO = '[data-test="Espresso_Macchiato"]';
+const CAFE_CAPPUCCINO = '[data-test="Cappuccino"]';
+const CAMPO_PROMO = ".promo";
+const CAMPO_YES = ".yes";
+
+class Produtos {
+  selecionaProduto() {
+    cy.adicionaProdudoNoCarrinho(CAFE_ESPRESSO, CAFE_ESPRESSO_MACCHIATO, CAFE_CAPPUCCINO);
+  }
+
+  
+//   cy.get('li:has([data-test="Espresso"]) small')
+//   .should('contain.text', '$10.00')
+//   .click();
+  aceitarPromocao() {
+    cy.get(CAMPO_PROMO, { timeout: 2000 }).should("be.visible");
+    cy.clicar(CAMPO_YES);
+  }
+}
+
+export default new Produtos();
