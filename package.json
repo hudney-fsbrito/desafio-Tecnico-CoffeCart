@@ -1,0 +1,20 @@
+{
+  "name": "desafio-tecnico-coffecart",
+  "version": "1.0.0",
+  "description": "desafio didatico da ferramenta cypress para academia accenture 2026",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Hudney Brito",
+  "license": "ISC",
+  "cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefinitions": false,
+    "stepDefinitions": "cypress/support/step-definitions/"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^10.2.0",
+    "cypress": "^15.8.0",
+    "cypress-cucumber-preprocessor": "^4.3.1"
+  }
+}
