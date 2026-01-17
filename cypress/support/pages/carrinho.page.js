@@ -4,7 +4,7 @@ const LI_PRODUTO_CARRINHO = ".list-item";
 const PRECO_PRODUTO_CARRINHO = "ul:not(.cart-preview) .unit-desc";
 const PRODUTO_CARRINHO = "ul:not(.cart-preview) .list-item";
 const BTN_ECLUIR_ITEM = ".delete";
-
+const BTN_TOTAL = '[data-test="checkout"]';
 
 const PRODUTOS = [
   "(Discounted) Mocha",
@@ -54,6 +54,10 @@ class Carrinho {
 
       cy.get(PRODUTO_CARRINHO).should("have.length", itensAntes - 1);
     });
+  }
+
+  selecionaTotal(){
+    cy.clicar(BTN_TOTAL);
   }
 }
 

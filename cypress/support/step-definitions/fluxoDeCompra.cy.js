@@ -8,8 +8,9 @@ import {
 } from "cypress-cucumber-preprocessor/steps";
 import Produtos from "../pages/produtos.page";
 import Carrinho from "../pages/carrinho.page";
+import Pagamento from "../pages/pagamento.page";
 
-And("seleciona 3 tipos de cafes diferentes", () => {
+When("seleciona 3 tipos de cafes diferentes", () => {
   Produtos.selecionaProduto();
 });
 
@@ -23,6 +24,17 @@ And("clica na página de carrinho e valida os valores", () => {
 });
 
 And("remove um dos cafes do carrinho", () => {
-    Carrinho.removerItemCarrinho();
+  Carrinho.removerItemCarrinho();
+});
 
+And("quando efetua o pagamento", () => {
+  Carrinho.acessaPaginaCarrinho();
+  Carrinho.selecionaTotal();
+  Pagamento.validarModalPagamento();
+  Pagamento.preencherFromulario();
+  Pagamento.efetuarPagamento();
+});
+
+Then("uma mensagem surge na tela", () => {
+  Pagamento.validarPagamento();
 });
