@@ -65,3 +65,45 @@ npx cypress run
 
 - 🔗 GitHub: https://github.com/hudney-fsbrito  
 - 🔗 LinkedIn: https://linkedin.com/in/hudneyfernandes-dev  
+
+
+
+
+## Fontes de Informação e Documentação
+
+Abaixo estão as principais referências utilizadas e recomendadas para estudo e aprofundamento:
+
+https://www.youtube.com/watch?v=Tkb1H4Cemak&t=10s
+https://www.youtube.com/watch?v=scSW_1WB5P8&t=1319s
+
+* Cypress
+
+https://docs.cypress.io
+
+https://docs.cypress.io/guides/references/best-practices
+
+https://docs.cypress.io/api/table-of-contents
+
+* BDD / Gherkin
+
+https://cucumber.io/docs/bdd/
+
+https://cucumber.io/docs/gherkin/reference/
+
+* Cucumber
+
+https://cucumber.io/docs/cucumber/
+
+https://github.com/badeball/cypress-cucumber-preprocessor
+
+* Faker.js
+
+https://fakerjs.dev/
+
+https://fakerjs.dev/guide/
+
+* Mochawesome
+
+https://github.com/adamgruber/mochawesome
+
+https://www.npmjs.com/package/cypress-mochawesome-reporter
