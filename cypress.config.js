@@ -23,12 +23,13 @@ module.exports = defineConfig({
     specPattern: "cypress/e2e/**/*.feature",
     baseUrl: "https://coffee-cart.app/",
     urlCart: "/cart",
-    // downloadsFolder: "cypress/downloads",
+    // screenshotOnRunFailure: true,
+    // screenshotsFolder: "cypress/screenshots/cucumber",
 
     setupNodeEvents(on, config) {
       const cucumber = require("cypress-cucumber-preprocessor").default;
       on("file:preprocessor", cucumber());
-      require('cypress-mochawesome-reporter/plugin')(on)
+      require("cypress-mochawesome-reporter/plugin")(on);
       // on("task", {
       //   findDownloadedFile,
       // });
