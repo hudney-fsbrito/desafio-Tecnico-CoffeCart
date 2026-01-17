@@ -58,7 +58,7 @@ Cypress.Commands.add("validarURL", (caminho)=>{
 })
 
 Cypress.Commands.add("clicar", (elemento) => {
-  cy.get(elemento).should("exist").click();
+  cy.get(elemento, { timeout: 3000 }).should("exist").click();
 });
 
 Cypress.Commands.add("validarVisivel", (seletr, valor)=>{

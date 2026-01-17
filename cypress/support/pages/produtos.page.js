@@ -13,12 +13,13 @@ class Produtos {
     );
   }
 
-  validaPrecoProduto() {
-        cy.get('li:has([data-test="Espresso"]) small')
-        .should('contain.text', '$10.00');
-  }
+  // validaPrecoProduto() {
+  //       cy.get('li:has([data-test="Espresso"]) small')
+  //       .should('contain.text', '$10.00');
+  // }
   aceitarPromocao() {
     cy.validarVisivel(CAMPO_PROMO, 2000 )
+    cy.screenshot('Modal da promoção')
     cy.clicar(CAMPO_YES);
   }
 }

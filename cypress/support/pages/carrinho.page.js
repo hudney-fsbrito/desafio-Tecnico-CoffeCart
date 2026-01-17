@@ -15,18 +15,19 @@ const PRODUTOS = [
 
 class Carrinho {
 
-
-  validarProdutoNoCrrinho(){
-    PRODUTOS.forEach((produto) => {
-        cy.get(LI_PRODUTO_CARRINHO).should('contain.text', produto)
-    })
-  }
-
   acessaPaginaCarrinho(){
     cy.clicar(BTN_CARRINHO);
     cy.validarURL(Cypress.config("urlCart"));
     cy.get(TITILO_LISTA).should("be.visible");
   }
+
+  validarProdutoNoCrrinho(){
+    PRODUTOS.forEach((produto) => {
+        cy.get(LI_PRODUTO_CARRINHO).should('contain.text', produto)
+    })
+    cy.screenshot('Produtos no carrinho')
+  }
+
 
   validarPrecoDoProduto(){
 
@@ -54,6 +55,7 @@ class Carrinho {
 
       cy.get(PRODUTO_CARRINHO).should("have.length", itensAntes - 1);
     });
+    cy.screenshot('Produto removido do carrinho')
   }
 
   selecionaTotal(){

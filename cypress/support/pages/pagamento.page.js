@@ -20,11 +20,11 @@ class Pagamento {
     }
 
     validarPagamento(){
-        ;
         cy.validarVisivel(MENSAGEM_PAGAMETO, 2000).and(
           "contain.text",
           "Thanks for your purchase. Please check your email for payment.",
         );
+        cy.screenshot('Pagemento efetuado')
     }
 
 }

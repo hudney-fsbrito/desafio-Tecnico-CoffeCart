@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="12.280" tests="1" failures="1">
+  <testsuite name="Root Suite" timestamp="2026-01-17T19:56:48" tests="0" file="cypress\e2e\fluxo-compra-sucesso.feature" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Efetuar o processo de compra" timestamp="2026-01-17T19:56:48" tests="1" time="12.259" failures="1">
+    <testcase name="Efetuar o processo de compra Efetuar o processo de compra com sucesso" time="0.000" classname="Efetuar o processo de compra com sucesso">
+      <failure message="Timed out retrying after 2000ms: expected &apos;&lt;div.snackbar.success.fade-enter-active.fade-enter-to&gt;&apos; to be &apos;visible&apos;
+
+This element `&lt;div.snackbar.success.fade-enter-active.fade-enter-to&gt;` is not visible because it has CSS property: `opacity: 0`" type="AssertionError"><![CDATA[AssertionError: Timed out retrying after 2000ms: expected '<div.snackbar.success.fade-enter-active.fade-enter-to>' to be 'visible'
+
+This element `<div.snackbar.success.fade-enter-active.fade-enter-to>` is not visible because it has CSS property: `opacity: 0`
+    at Context.eval (cypress/support/commands.js:65:39)
+    at wrapped (https://coffee-cart.app/__cypress/runner/cypress_runner.js:146015:43)]]></failure>
+    </testcase>
+  </testsuite>
+</testsuites>
