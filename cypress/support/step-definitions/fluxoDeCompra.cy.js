@@ -15,5 +15,14 @@ And("seleciona 3 tipos de cafes diferentes", () => {
 
 And("aceita a promocao de mais um por $4", () => {
   Produtos.aceitarPromocao();
-  Carrinho.validarProdutoNoCrrinho();
+});
+
+And("clica na página de carrinho e valida os valores", () => {
+  Carrinho.acessaPaginaCarrinho();
+  Carrinho.validarPrecoDoProduto();  
+});
+
+And("remove um dos cafes do carrinho", () => {
+    Carrinho.removerItemCarrinho();
+
 });

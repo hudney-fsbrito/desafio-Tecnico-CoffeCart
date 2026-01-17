@@ -6,13 +6,17 @@ const CAMPO_YES = ".yes";
 
 class Produtos {
   selecionaProduto() {
-    cy.adicionaProdudoNoCarrinho(CAFE_ESPRESSO, CAFE_ESPRESSO_MACCHIATO, CAFE_CAPPUCCINO);
+    cy.adicionaProdutoNoCarrinho(
+      CAFE_ESPRESSO,
+      CAFE_ESPRESSO_MACCHIATO,
+      CAFE_CAPPUCCINO,
+    );
   }
 
-  
-//   cy.get('li:has([data-test="Espresso"]) small')
-//   .should('contain.text', '$10.00')
-//   .click();
+  validaPrecoProduto() {
+        cy.get('li:has([data-test="Espresso"]) small')
+        .should('contain.text', '$10.00');
+  }
   aceitarPromocao() {
     cy.get(CAMPO_PROMO, { timeout: 2000 }).should("be.visible");
     cy.clicar(CAMPO_YES);

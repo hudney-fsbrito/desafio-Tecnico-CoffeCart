@@ -7,6 +7,7 @@ Funcionalidade: Efetuar o processo de compra
 		Dado que o usuario acessa o site coffe cart
 		E seleciona 3 tipos de cafes diferentes
         E aceita a promocao de mais um por $4
+		E clica na página de carrinho e valida os valores
         E remove um dos cafes do carrinho
 		Quando quando efetua o pagamento
 		Entao uma mensagem surge na tela

@@ -24,11 +24,34 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-Cypress.Commands.add('adicionaProdudoNoCarrinho', (...seletores)=>{
-    seletores.forEach((seletor)=>{
-        cy.get(seletor).click()
-    })
-})
+Cypress.Commands.add("adicionaProdutoNoCarrinho", (...seletores) => {
+  const precosArmazenados = [];
+
+  seletores.forEach((seletor) => {
+    cy.get(seletor)
+      .parents("li")
+      .within(() => {
+        cy.get('h4').invoke('text').then((texto)=>{
+            const linha = texto.split('\n');
+            const nome = linha[0].trim()
+
+            cy.get("small")
+              .invoke("text")
+              .then((preco) => {
+                  precosArmazenados.push({
+                    nome: nome,
+                    preco: preco.trim()
+                  });
+  
+                cy.get(seletor).click();
+    
+                  cy.wrap(precosArmazenados).as("precosSalvos");
+              });
+          });
+        })
+
+  });
+});
 
 Cypress.Commands.add("clicar", (elemento) => {
   cy.get(elemento).should("exist").click();
