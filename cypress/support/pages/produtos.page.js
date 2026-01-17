@@ -18,7 +18,7 @@ class Produtos {
         .should('contain.text', '$10.00');
   }
   aceitarPromocao() {
-    cy.get(CAMPO_PROMO, { timeout: 2000 }).should("be.visible");
+    cy.validarVisivel(CAMPO_PROMO, 2000 )
     cy.clicar(CAMPO_YES);
   }
 }

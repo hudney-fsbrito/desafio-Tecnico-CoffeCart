@@ -24,7 +24,7 @@ class Carrinho {
 
   acessaPaginaCarrinho(){
     cy.clicar(BTN_CARRINHO);
-    cy.url().should("include", "/cart");
+    cy.validarURL(Cypress.config("urlCart"));
     cy.get(TITILO_LISTA).should("be.visible");
   }
 

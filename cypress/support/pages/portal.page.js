@@ -1,6 +1,6 @@
 class Portal {
     validarAcesso(){
-        cy.url().should("include", Cypress.config('baseUrl'))
+        cy.validarURL(Cypress.config("baseUrl"));
     }
 }
 

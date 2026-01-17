@@ -7,7 +7,7 @@ const MENSAGEM_PAGAMETO = ".snackbar.success";
 class Pagamento {
 
     validarModalPagamento(){
-        cy.get(MODAL_PAGAMENTO).should("be.visible");
+        cy.validarVisivel(MODAL_PAGAMENTO, 2000);
     }
 
     preencherFromulario(){
@@ -20,9 +20,11 @@ class Pagamento {
     }
 
     validarPagamento(){
-        cy.get(MENSAGEM_PAGAMETO)
-          .should("be.visible")
-          .and("contain.text", "Thanks for your purchase. Please check your email for payment.",);
+        ;
+        cy.validarVisivel(MENSAGEM_PAGAMETO, 2000).and(
+          "contain.text",
+          "Thanks for your purchase. Please check your email for payment.",
+        );
     }
 
 }

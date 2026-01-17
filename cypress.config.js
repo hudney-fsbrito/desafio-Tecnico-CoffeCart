@@ -7,6 +7,7 @@ module.exports = defineConfig({
     watchForFileChanges: false,
     specPattern: "cypress/e2e/**/*.feature",
     baseUrl: "https://coffee-cart.app/",
+    urlCart: "/cart",
     // downloadsFolder: "cypress/downloads",
 
     setupNodeEvents(on, config) {

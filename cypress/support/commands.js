@@ -53,6 +53,14 @@ Cypress.Commands.add("adicionaProdutoNoCarrinho", (...seletores) => {
   });
 });
 
+Cypress.Commands.add("validarURL", (caminho)=>{
+    cy.url().should("include", caminho);
+})
+
 Cypress.Commands.add("clicar", (elemento) => {
   cy.get(elemento).should("exist").click();
 });
+
+Cypress.Commands.add("validarVisivel", (seletr, valor)=>{
+    cy.get(seletr, { timeout: valor }).should("be.visible");
+})
