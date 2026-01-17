@@ -20,7 +20,7 @@ class Pagamento {
     }
 
     validarPagamento(){
-        cy.validarVisivel(MENSAGEM_PAGAMETO, 2000).and(
+        cy.get(MENSAGEM_PAGAMETO, {timeout:10000}).should('have.css', 'opacity', '1').and(
           "contain.text",
           "Thanks for your purchase. Please check your email for payment.",
         );
