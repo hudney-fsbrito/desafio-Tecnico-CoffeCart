@@ -20,7 +20,7 @@ And("aceita a promocao de mais um por $4", () => {
 
 And("clica na página de carrinho e valida os valores", () => {
   Carrinho.acessaPaginaCarrinho();
-  Carrinho.validarPrecoDoProduto();  
+  Carrinho.validarPrecosCarrinho();  
 });
 
 And("remove um dos cafes do carrinho", () => {

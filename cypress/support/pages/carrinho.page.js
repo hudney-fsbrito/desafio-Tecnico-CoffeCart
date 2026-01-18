@@ -1,4 +1,4 @@
-const BTN_CARRINHO = '[aria-label="Cart page"]'
+const BTN_CARRINHO = '[aria-label="Cart page"]';
 const TITILO_LISTA = ".list-header";
 const LI_PRODUTO_CARRINHO = ".list-item";
 const PRECO_PRODUTO_CARRINHO = "ul:not(.cart-preview) .unit-desc";
@@ -14,40 +14,52 @@ const PRODUTOS = [
 ];
 
 class Carrinho {
-
-  acessaPaginaCarrinho(){
+  acessaPaginaCarrinho() {
     cy.clicar(BTN_CARRINHO);
     cy.validarURL(Cypress.config("urlCart"));
-    cy.get(TITILO_LISTA).should("be.visible");
+    cy.get(TITILO_LISTA, { timeout: 10000 }).should("exist").and("be.visible");
   }
 
-  validarProdutoNoCrrinho(){
+  validarProdutoNoCrrinho() {
     PRODUTOS.forEach((produto) => {
-        cy.get(LI_PRODUTO_CARRINHO).should('contain.text', produto)
-    })
-    cy.screenshot('Produtos no carrinho')
+      cy.get(LI_PRODUTO_CARRINHO).should("contain.text", produto);
+    });
+    cy.screenshot("Produtos no carrinho");
   }
 
+  extrairPrecosEsperados(produtos){
+    return produtos.map((p)=>p.preco)
+  }
 
-  validarPrecoDoProduto(){
+  extrairPrecosDoCarrinho($spans){
+    return [...$spans].map((span)=>
+      span.textContent.split(" x ")[0].trim(),
+    )
+  }
 
-    cy.get('@precosSalvos').then( produtos => {
-      const precosEsperados = produtos.map(p => p.preco);
+  validarQuantidadeItens(precosCarrinho, precosEsperados){
+    expect(precosCarrinho.length).to.deep.equal(precosEsperados.length + 1);
+  }
 
-      cy.get(PRECO_PRODUTO_CARRINHO).then($spans => {
-        const precosCarrinho = [...$spans]
-        .map(span => span.textContent.split(' x ')[0].trim())
+  validarPrecosPresentes(precosCarrinho, precosEsperados){
+     precosEsperados.forEach((preco) => {
+       expect(precosCarrinho).to.include(preco);
+     });
+  }
+  validarPrecosCarrinho() {
+    cy.get("@precosSalvos").then((produtos) => {
+      const precosEsperados = this.extrairPrecosEsperados(produtos);
 
-        expect(precosCarrinho.length).to.deep.equal(precosEsperados.length + 1);
-        precosEsperados.forEach(preco => {
-          expect(precosCarrinho).to.include(preco);
-          
-        });
+      cy.get(PRECO_PRODUTO_CARRINHO).then(($spans) => {
+        const precosCarrinho = this.extrairPrecosDoCarrinho($spans)
+
+        this.validarQuantidadeItens(precosCarrinho, precosEsperados)
+        this.validarPrecosPresentes(precosCarrinho, precosEsperados)
       });
-    })
+    });
   }
 
-  removerItemCarrinho(){
+  removerItemCarrinho() {
     cy.get(PRODUTO_CARRINHO).then(($itens) => {
       const itensAntes = $itens.length;
 
@@ -55,10 +67,10 @@ class Carrinho {
 
       cy.get(PRODUTO_CARRINHO).should("have.length", itensAntes - 1);
     });
-    cy.screenshot('Produto removido do carrinho')
+    cy.screenshot("Produto removido do carrinho");
   }
 
-  selecionaTotal(){
+  selecionaTotal() {
     cy.clicar(BTN_TOTAL);
   }
 }

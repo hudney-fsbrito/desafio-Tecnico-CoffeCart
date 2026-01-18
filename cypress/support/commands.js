@@ -24,6 +24,38 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
+
+
+Cypress.Commands.add("extrairDados", (seletor) => {
+  return cy
+    .get(seletor)
+    .parents("li")
+    .within(() => {
+      cy.get("h4")
+        .invoke("text")
+        .then((texto) => {
+          const nome = texto.split("\n")[0].trim();
+
+          cy.get("small")
+            .invoke("text")
+            .then((preco) => {
+              cy.wrap({
+                nome,
+                preco: preco.trim(),
+              });
+            });
+        });
+    });
+});
+
+Cypress.Commands.add("adicionarProdutos", (seletor) => {
+  cy.get(seletor).should("be.visible").click();
+});
+
+Cypress.Commands.add("salvarAlias", (alias, valor) => {
+  cy.wrap(valor).as(alias);
+});
+
 Cypress.Commands.add("adicionaProdutoNoCarrinho", (...seletores) => {
   const precosArmazenados = [];
 
@@ -31,36 +63,38 @@ Cypress.Commands.add("adicionaProdutoNoCarrinho", (...seletores) => {
     cy.get(seletor)
       .parents("li")
       .within(() => {
-        cy.get('h4').invoke('text').then((texto)=>{
-            const linha = texto.split('\n');
-            const nome = linha[0].trim()
+        cy.get("h4")
+          .invoke("text")
+          .then((texto) => {
+            const linha = texto.split("\n");
+            const nome = linha[0].trim();
 
             cy.get("small")
               .invoke("text")
               .then((preco) => {
-                  precosArmazenados.push({
-                    nome: nome,
-                    preco: preco.trim()
-                  });
-  
-                cy.get(seletor).click();
-    
-                  cy.wrap(precosArmazenados).as("precosSalvos");
+                precosArmazenados.push({
+                  nome: nome,
+                  preco: preco.trim(),
+                });
+
+                cy.adicionarProdutos(seletor);
+                cy.salvarAlias("precosSalvos", precosArmazenados);
+                
               });
           });
-        })
-
+      });
   });
 });
 
-Cypress.Commands.add("validarURL", (caminho)=>{
-    cy.url().should("include", caminho);
-})
+
+Cypress.Commands.add("validarURL", (caminho) => {
+  cy.url().should("include", caminho);
+});
 
 Cypress.Commands.add("clicar", (elemento) => {
   cy.get(elemento, { timeout: 3000 }).should("exist").click();
 });
 
-Cypress.Commands.add("validarVisivel", (seletr, valor)=>{
-    cy.get(seletr, { timeout: valor }).should("be.visible");
-})
+Cypress.Commands.add("validarVisivel", (seletr, valor) => {
+  cy.get(seletr, { timeout: valor }).should("be.visible");
+});
