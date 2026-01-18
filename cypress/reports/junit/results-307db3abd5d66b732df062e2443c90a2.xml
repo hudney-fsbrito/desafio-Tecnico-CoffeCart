@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="15.129" tests="1" failures="0">
+  <testsuite name="Root Suite" timestamp="2026-01-18T18:36:22" tests="0" file="cypress\e2e\fluxo-compra-sucesso.feature" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Efetuar o processo de compra" timestamp="2026-01-18T18:36:22" tests="1" time="15.123" failures="0">
+    <testcase name="Efetuar o processo de compra Efetuar o processo de compra com sucesso" time="14.653" classname="Efetuar o processo de compra com sucesso">
+    </testcase>
+  </testsuite>
+</testsuites>
